@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RJW | Bienes Raíces y Servicios</title>
+    <meta
+      name="description"
+      content="Plataforma de venta, renta y ofrecimiento de servicios varios de RJW."
+    />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      :root {
+        --primary: #1f3a5f;
+        --primary-dark: #13294b;
+        --primary-soft: #eaf2ff;
+        --accent: #d4a937;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --bg: #f5f7fa;
+        --white: #ffffff;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+      }
+
+      /* Navbar */
+      .navbar {
+        background-color: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 2px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--primary-dark);
+      }
+
+      .navbar-brand span {
+        color: var(--accent);
+      }
+
+      .nav-link {
+        color: var(--text);
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .nav-link:hover,
+      .nav-link:focus {
+        color: var(--primary);
+      }
+
+      .venta-dropdown,
+      .renta-dropdown {
+        position: relative;
+      }
+
+      .venta-dropdown .dropdown-menu,
+      .renta-dropdown .dropdown-menu {
+        display: none;
+        margin-top: 0.5rem;
+        min-width: 220px;
+        border: 1px solid rgba(31, 58, 95, 0.1);
+        box-shadow: 0 14px 28px rgba(19, 41, 75, 0.1);
+        border-radius: 0.85rem;
+      }
+
+      .venta-dropdown:hover .dropdown-menu,
+      .venta-dropdown:focus-within .dropdown-menu,
+      .venta-dropdown .dropdown-menu.show,
+      .renta-dropdown:hover .dropdown-menu,
+      .renta-dropdown:focus-within .dropdown-menu,
+      .renta-dropdown .dropdown-menu.show {
+        display: block;
+      }
+
+      .dropdown-item {
+        padding: 0.7rem 1rem;
+        font-weight: 500;
+      }
+
+      .dropdown-item:hover {
+        background-color: var(--primary-soft);
+        color: var(--primary-dark);
+      }
+
+      .btn-primary-custom {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        color: var(--white);
+        font-weight: 600;
+      }
+
+      .btn-primary-custom:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+      }
+
+      /* Hero */
+      .hero {
+        background: linear-gradient(135deg, #eff5ff 0%, #ffffff 50%, #f7f3eb 100%);
+        padding-top: 8rem;
+        padding-bottom: 5rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2.2rem, 4vw, 4rem);
+        font-weight: 800;
+        line-height: 1.1;
+        color: var(--primary-dark);
+      }
+
+      .hero-title .highlight {
+        color: var(--accent);
+      }
+
+      .hero-subtitle {
+        font-size: 1.08rem;
+        color: var(--muted);
+        max-width: 620px;
+      }
+
+      .hero-actions {
+        margin-top: 1.5rem;
+      }
+
+      .hero-card {
+        background: var(--white);
+        border: 1px solid rgba(31, 58, 95, 0.08);
+        border-radius: 1rem;
+        box-shadow: 0 18px 40px rgba(19, 41, 75, 0.08);
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: var(--primary-soft);
+        color: var(--primary);
+        border-radius: 999px;
+        padding: 0.45rem 0.9rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .stats-box {
+        background: var(--primary-dark);
+        color: var(--white);
+        border-radius: 1rem;
+        padding: 1.25rem;
+      }
+
+      .stats-box h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .stats-box span {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.8rem;
+      }
+
+      /* Main content */
+      .main-shell {
+        padding: 2.5rem 0 4rem;
+      }
+
+      .welcome-panel,
+      .content-panel,
+      .screen-panel {
+        background: var(--white);
+        border: 1px solid rgba(31, 58, 95, 0.08);
+        border-radius: 1rem;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      }
+
+      .content-panel,
+      .screen-panel {
+        padding: 1.5rem;
+      }
+
+      .page-screen {
+        display: none;
+      }
+
+      .page-screen.active {
+        display: block;
+      }
+
+      .property-card,
+      .service-card {
+        border: 1px solid rgba(31, 58, 95, 0.08);
+        border-radius: 1rem;
+        overflow: hidden;
+        height: 100%;
+        background: var(--white);
+        box-shadow: 0 10px 22px rgba(19, 41, 75, 0.04);
+      }
+
+      .property-image,
+      .service-icon {
+        background: linear-gradient(135deg, #dfeeff 0%, #f4efe7 100%);
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.3rem;
+        color: var(--primary-dark);
+        font-weight: 700;
+      }
+
+      .property-photo {
+        display: block;
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+      }
+
+      .property-detail-photo {
+        display: block;
+        width: 100%;
+        max-height: 680px;
+        min-height: 320px;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border-radius: 0.75rem;
+      }
+
+      .property-carousel {
+        position: relative;
+        overflow: hidden;
+        background: #e9ecef;
+      }
+
+      .property-carousel-slide {
+        display: none;
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+      }
+
+      .property-carousel-slide.active {
+        display: block;
+      }
+
+      .property-carousel-detail .property-carousel-slide {
+        height: min(68vh, 680px);
+        min-height: 320px;
+      }
+
+      .property-carousel-arrow {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        display: grid;
+        width: 2.5rem;
+        aspect-ratio: 1;
+        place-items: center;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.62);
+        color: #fff;
+        font-size: 1.75rem;
+        line-height: 1;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+
+      .property-carousel-prev {
+        left: 0.75rem;
+      }
+
+      .property-carousel-next {
+        right: 0.75rem;
+      }
+
+      .property-carousel-indicators {
+        position: absolute;
+        z-index: 2;
+        right: 0;
+        bottom: 0.75rem;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        gap: 0.45rem;
+      }
+
+      .property-carousel-indicator {
+        width: 0.65rem;
+        height: 0.65rem;
+        padding: 0;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.45);
+        cursor: pointer;
+      }
+
+      .property-carousel-indicator.active {
+        background: #fff;
+      }
+
+      .property-specification {
+        display: grid;
+        grid-template-columns: 3rem minmax(0, 1fr);
+        align-items: center;
+        gap: 0.8rem;
+        margin: 0;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(31, 58, 95, 0.12);
+      }
+
+      .property-specification-no-icon {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .property-specification-icon {
+        display: block;
+        width: 3rem;
+        height: 3rem;
+        padding: 0.35rem;
+        border: 1px solid rgba(31, 58, 95, 0.08);
+        border-radius: 50%;
+        background: #f3f6fa;
+        object-fit: contain;
+      }
+
+      .property-specification-copy {
+        min-width: 0;
+      }
+
+      .property-specification dt {
+        color: var(--primary-dark);
+        font-weight: 700;
+      }
+
+      .property-specification dd {
+        margin: 0.15rem 0 0;
+        overflow-wrap: anywhere;
+      }
+
+      .developer-tools,
+      .contact-panel {
+        border-top: 1px solid rgba(31, 58, 95, 0.12);
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+      }
+
+      .developer-role-switch {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(31, 58, 95, 0.16);
+        border-radius: 0.75rem;
+        background: #fff;
+      }
+
+      .publication-images-preview {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.75rem;
+        margin-top: 0.75rem;
+      }
+
+      .publication-images-preview img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border-radius: 0.5rem;
+      }
+
+      .verified-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.6rem;
+        border-radius: 999px;
+        background: #e6f4ed;
+        color: #17613d;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+
+      .verified-badge[hidden] {
+        display: none;
+      }
+
+      .service-icon {
+        min-height: 120px;
+        font-size: 2rem;
+      }
+
+      .badge-sale,
+      .badge-rent,
+      .badge-service {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        border-radius: 999px;
+      }
+
+      .badge-sale {
+        background: rgba(31, 58, 95, 0.12);
+        color: var(--primary-dark);
+      }
+
+      .badge-rent {
+        background: rgba(212, 169, 55, 0.14);
+        color: #8d6615;
+      }
+
+      .badge-service {
+        background: rgba(17, 141, 110, 0.12);
+        color: #0d6b52;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .section-header h3 {
+        margin: 0;
+        font-weight: 700;
+        color: var(--primary-dark);
+      }
+
+      .catalog-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .catalog-header h3 {
+        margin: 0;
+        font-weight: 700;
+        color: var(--primary-dark);
+      }
+
+      @media (max-width: 991.98px) {
+        .hero {
+          padding-top: 7rem;
+        }
+
+        .section-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar fijo -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          RJW<span>.</span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarRJW"
+          aria-controls="navbarRJW"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarRJW">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-2">
+            <li class="nav-item">
+              <button class="nav-link btn btn-link text-decoration-none screen-link active" data-screen="home" type="button">Inicio</button>
+            </li>
+            <li class="nav-item dropdown venta-dropdown">
+              <button
+                class="nav-link btn btn-link text-decoration-none dropdown-toggle screen-link"
+                type="button"
+                id="ventaDropdownLink"
+                data-screen="sale"
+              >
+                Venta
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="ventaDropdownLink">
+                <li>
+                  <button class="dropdown-item category-link" data-category="Terrenos" type="button">
+                    Terrenos
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item category-link" data-category="Apartamentos" type="button">
+                    Apartamentos
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item category-link" data-category="Casas" type="button">
+                    Casas
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item category-link" data-category="Vehiculos" type="button">
+                    Vehiculos
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item category-link" data-category="Maquinaria" type="button">
+                    Maquinaria
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item category-link" data-category="Equipos" type="button">
+                    Equipos
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item category-link" data-category="Habitaciones" type="button">
+                    Habitaciones
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown renta-dropdown">
+              <button
+                class="nav-link btn btn-link text-decoration-none dropdown-toggle screen-link"
+                type="button"
+                id="rentaDropdownLink"
+                data-screen="rent"
+              >
+                Renta
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="rentaDropdownLink">
+                <li>
+                  <button class="dropdown-item category-link" data-category="Terrenos" data-mode="rent" type="button">
+                    Terrenos
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item category-link" data-category="Apartamentos" data-mode="rent" type="button">
+                    Apartamentos
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item category-link" data-category="Casas" data-mode="rent" type="button">
+                    Casas
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item category-link" data-category="Vehiculos" data-mode="rent" type="button">
+                    Vehiculos
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item category-link" data-category="Maquinaria" data-mode="rent" type="button">
+                    Maquinaria
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item category-link" data-category="Equipos" data-mode="rent" type="button">
+                    Equipos
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item category-link" data-category="Habitaciones" data-mode="rent" type="button">
+                    Habitaciones
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link btn btn-link text-decoration-none screen-link" data-screen="services" type="button">Servicios</button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link btn btn-link text-decoration-none screen-link" data-screen="legal" type="button">Asesoría Jurídica</button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link btn btn-link text-decoration-none screen-link" data-screen="publish" type="button">Publicar</button>
+            </li>
+            <li class="nav-item ms-lg-3">
+              <button class="btn btn-primary-custom rounded-pill px-3" type="button">
+                Consultar
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Contenedor principal para cargar módulos -->
+    <main class="main-shell">
+      <div class="container">
+        <section id="homeScreen" class="page-screen active">
+          <div class="hero">
+            <div class="container">
+              <div class="row align-items-center g-4">
+                <div class="col-lg-7">
+                  <span class="hero-badge">Bienes Raíces &amp; Servicios</span>
+                  <h1 class="hero-title mt-3">
+                    Encuentra tu <span class="highlight">propiedad ideal</span>
+                    y soluciones confiables.
+                  </h1>
+                  <p class="hero-subtitle mt-3">
+                    RJW conecta oportunidades de venta, renta y servicios especializados para
+                    clientes que buscan confianza, calidad y asesoría integral.
+                  </p>
+
+                  <div class="hero-actions d-flex flex-wrap gap-3">
+                    <button
+                      data-screen="sale"
+                      type="button"
+                      class="btn btn-primary-custom btn-lg rounded-pill px-4 screen-link"
+                    >
+                      Explorar propiedades
+                    </button>
+                    <button
+                      data-screen="services"
+                      type="button"
+                      class="btn btn-outline-secondary btn-lg rounded-pill px-4 screen-link"
+                    >
+                      Ver servicios
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-lg-5">
+                  <div class="hero-card p-4">
+                    <div class="row g-3">
+                      <div class="col-12">
+                        <div class="stats-box">
+                          <h3 id="activePropertiesCount">0</h3>
+                          <span>Propiedades activas</span>
+                        </div>
+                      </div>
+
+                      <div class="col-6">
+                        <div class="stats-box">
+                          <h3 id="salePropertiesCount">0</h3>
+                          <span>Ventas</span>
+                        </div>
+                      </div>
+
+                      <div class="col-6">
+                        <div class="stats-box">
+                          <h3 id="rentPropertiesCount">0</h3>
+                          <span>Rentas</span>
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="bg-light rounded p-3 border">
+                          <small class="text-uppercase text-muted fw-bold d-block mb-2">
+                            Atención personalizada
+                          </small>
+                          <p class="mb-0">
+                            Asesoría estratégica para compra, alquiler y gestión de servicios.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="welcome-panel p-4 p-lg-5 mt-4">
+            <div class="row align-items-center">
+              <div class="col-md-8">
+                <h2 class="fw-bold mb-3">Bienvenido a RJW</h2>
+                <p class="text-secondary mb-0">
+                  Este espacio está preparado para integrar módulos futuros de venta,
+                  renta, servicios y asesoría jurídica, manteniendo una base limpia y
+                  escalable para el crecimiento del proyecto.
+                </p>
+              </div>
+              <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <span class="badge bg-primary rounded-pill px-3 py-2">Estructura base</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="saleScreen" class="page-screen screen-panel mt-4">
+          <div class="section-header">
+            <h3>Venta</h3>
+          </div>
+          <div class="row g-4">
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Terrenos" type="button">
+                <div class="property-image">🏞️</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Terrenos</h4>
+                  <p class="text-secondary mb-0">Lotes, terrenos y proyectos de inversión.</p>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Apartamentos" type="button">
+                <div class="property-image">🏢</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Apartamentos</h4>
+                  <p class="text-secondary mb-0">Viviendas urbanas listas para compra.</p>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Casas" type="button">
+                <div class="property-image">🏡</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Casas</h4>
+                  <p class="text-secondary mb-0">Residencias familiares y propiedades premium.</p>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Vehiculos" type="button">
+                <div class="property-image">🚗</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Vehiculos</h4>
+                  <p class="text-secondary mb-0">Automóviles, camiones y unidades de uso personal.</p>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Maquinaria" type="button">
+                <div class="property-image">🛠️</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Maquinaria</h4>
+                  <p class="text-secondary mb-0">Equipo industrial y maquinaria para operación.</p>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Equipos" type="button">
+                <div class="property-image">🔧</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Equipos</h4>
+                  <p class="text-secondary mb-0">Herramientas y equipos disponibles para compra.</p>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Habitaciones" type="button">
+                <div class="property-image">🛏️</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Habitaciones</h4>
+                  <p class="text-secondary mb-0">Espacios para venta de habitaciones y alquileres.</p>
+                </div>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="rentScreen" class="page-screen screen-panel mt-4">
+          <div class="section-header">
+            <h3>Renta</h3>
+          </div>
+          <div class="row g-4">
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Terrenos" data-mode="rent" type="button">
+                <div class="property-image">🏞️</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Terrenos</h4>
+                  <p class="text-secondary mb-0">Lotes y terrenos disponibles para renta.</p>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Apartamentos" data-mode="rent" type="button">
+                <div class="property-image">🏢</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Apartamentos</h4>
+                  <p class="text-secondary mb-0">Viviendas urbanas con renta accesible.</p>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Casas" data-mode="rent" type="button">
+                <div class="property-image">🏡</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Casas</h4>
+                  <p class="text-secondary mb-0">Residencias familiares para alquilar.</p>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Vehiculos" data-mode="rent" type="button">
+                <div class="property-image">🚗</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Vehiculos</h4>
+                  <p class="text-secondary mb-0">Unidades para alquiler personal o empresarial.</p>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Maquinaria" data-mode="rent" type="button">
+                <div class="property-image">🛠️</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Maquinaria</h4>
+                  <p class="text-secondary mb-0">Equipo industrial y maquinaria para operación.</p>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Equipos" data-mode="rent" type="button">
+                <div class="property-image">🔧</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Equipos</h4>
+                  <p class="text-secondary mb-0">Herramientas y equipos disponibles para renta.</p>
+                </div>
+              </button>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <button class="category-link card border-0 shadow-sm w-100 text-start p-0 overflow-hidden" data-category="Habitaciones" data-mode="rent" type="button">
+                <div class="property-image">🛏️</div>
+                <div class="p-3">
+                  <h4 class="fw-bold mb-1">Habitaciones</h4>
+                  <p class="text-secondary mb-0">Espacios disponibles para alquiler temporal o permanente.</p>
+                </div>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="servicesScreen" class="page-screen screen-panel mt-4">
+          <div class="section-header">
+            <h3>Servicios</h3>
+          </div>
+          <div id="servicesGrid" class="row g-4"></div>
+        </section>
+
+        <section id="legalScreen" class="page-screen screen-panel mt-4">
+          <div class="section-header">
+            <h3>Asesoría Jurídica</h3>
+          </div>
+          <div class="row g-4">
+            <div class="col-12">
+              <div class="alert alert-light border text-center py-5 mb-0">
+                <div class="display-6 mb-3">⚖️</div>
+                <h4 class="fw-bold mb-2">Asesoría jurídica en espera</h4>
+                <p class="text-secondary mb-0">
+                  Aquí podrás mostrar servicios legales, revisión de contratos y trámites relacionados con propiedades.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="categoryScreen" class="page-screen screen-panel mt-4">
+          <div class="catalog-header">
+            <div class="d-flex align-items-center gap-3">
+              <button id="btnBackToCategory" class="btn btn-outline-secondary btn-sm rounded-pill" type="button">
+                ← Volver
+              </button>
+              <h3 id="categoryTitle">Categoría</h3>
+            </div>
+          </div>
+          <div class="row g-3 align-items-end mb-4">
+            <div class="col-sm-6 col-xl-3">
+              <label class="form-label fw-semibold" for="filterDepartment">Ubicación</label>
+              <select id="filterDepartment" class="form-select">
+                <option value="">Todos los departamentos</option>
+              </select>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+              <label class="form-label fw-semibold" for="filterService">Servicios</label>
+              <select id="filterService" class="form-select">
+                <option value="">Todos los servicios</option>
+              </select>
+            </div>
+            <div class="col-sm-6 col-xl-2">
+              <label class="form-label fw-semibold" for="filterDeed">Escritura</label>
+              <select id="filterDeed" class="form-select">
+                <option value="">Todas</option>
+                <option value="Publica">Pública</option>
+                <option value="Registrada">Registrada</option>
+              </select>
+            </div>
+            <div class="col-sm-6 col-xl-2">
+              <label class="form-label fw-semibold" for="filterPayment">Formas de Pago</label>
+              <select id="filterPayment" class="form-select">
+                <option value="">Todas</option>
+                <option value="Al Contado">Al Contado</option>
+                <option value="Financiamiento">Financiamiento</option>
+              </select>
+            </div>
+            <div class="col-xl-2">
+              <button id="btnClearFilters" class="btn btn-outline-secondary w-100" type="button">
+                Limpiar filtros
+              </button>
+            </div>
+          </div>
+          <div id="categoryGrid" class="row g-4"></div>
+        </section>
+
+        <section id="propertyDetailScreen" class="page-screen screen-panel mt-4">
+          <div class="catalog-header">
+            <button id="btnBackToListing" class="btn btn-outline-secondary btn-sm rounded-pill" type="button">
+              ← Volver a resultados
+            </button>
+          </div>
+          <div class="row g-4 align-items-start">
+            <div class="col-lg-7">
+              <div id="propertyDetailGallery"></div>
+            </div>
+            <div class="col-lg-5">
+              <span id="propertyDetailMode" class="badge badge-sale mb-2"></span>
+              <span id="propertyDetailVerified" class="verified-badge mb-2" hidden>Proyecto Oficial · Verificado por el Desarrollador</span>
+              <h2 id="propertyDetailName" class="h3 fw-bold mb-3"></h2>
+              <p id="propertyDetailDescription" class="text-secondary mb-4"></p>
+              <dl id="propertySpecifications" class="row g-0"></dl>
+              <div id="developerPropertyActions" class="d-flex gap-2 flex-wrap mt-3" hidden>
+                <button id="btnEditProperty" class="btn btn-outline-primary btn-sm" type="button">Editar ficha</button>
+                <button id="btnDeleteProperty" class="btn btn-outline-danger btn-sm" type="button">Eliminar ficha</button>
+              </div>
+            </div>
+          </div>
+          <section class="contact-panel" aria-labelledby="contactFormTitle">
+            <h3 id="contactFormTitle" class="h5 fw-bold mb-3">Contactar sobre esta ficha</h3>
+            <form id="propertyContactForm">
+              <input id="contactPropertyIndex" type="hidden">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" for="contactName">Nombre</label>
+                  <input id="contactName" class="form-control" name="name" autocomplete="name" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="contactPhone">Teléfono</label>
+                  <input id="contactPhone" class="form-control" name="phone" type="tel" autocomplete="tel" required>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="contactEmail">Correo electrónico</label>
+                  <input id="contactEmail" class="form-control" name="email" type="email" autocomplete="email" required>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="contactMessage">Mensaje</label>
+                  <textarea id="contactMessage" class="form-control" name="message" rows="4" required></textarea>
+                </div>
+                <div class="col-12 d-flex align-items-center gap-3 flex-wrap">
+                  <button class="btn btn-primary-custom" type="submit">Enviar</button>
+                  <div id="contactFeedback" class="small" role="status" aria-live="polite"></div>
+                </div>
+              </div>
+            </form>
+          </section>
+        </section>
+
+        <section id="publishScreen" class="page-screen screen-panel mt-4">
+          <div class="section-header">
+            <h3 id="publishTitle">Publicar ficha</h3>
+            <div class="developer-role-switch flex-wrap">
+              <span id="developerSessionStatus" class="small fw-semibold">Sesión pública</span>
+              <button id="btnShowDeveloperLogin" class="btn btn-outline-primary btn-sm" type="button">Acceso de desarrollador</button>
+              <button id="btnDeveloperLogout" class="btn btn-outline-secondary btn-sm" type="button" hidden>Cerrar sesión</button>
+            </div>
+          </div>
+          <form id="developerLoginForm" class="mb-3" hidden>
+            <div class="row g-2 align-items-end">
+              <div class="col-md-5">
+                <label class="form-label" for="developerUsername">Usuario</label>
+                <input id="developerUsername" class="form-control" autocomplete="username" required>
+              </div>
+              <div class="col-md-5">
+                <label class="form-label" for="developerPassword">Contraseña</label>
+                <input id="developerPassword" class="form-control" type="password" autocomplete="current-password" required>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-primary-custom" type="submit">Iniciar sesión</button>
+              </div>
+              <div class="col-12"><div id="developerLoginFeedback" role="status" aria-live="polite"></div></div>
+            </div>
+          </form>
+          <div id="developerModeNotice" class="alert alert-warning" role="status">
+            Las fichas comunes quedan pendientes. El acceso administrador predeterminado es solo para demostración y no protege un sitio publicado en Internet.
+          </div>
+          <form id="propertyPublicationForm">
+            <div class="row g-3">
+              <div class="col-md-6 col-xl-3">
+                <label class="form-label" for="publicationCategory">Categoría</label>
+                <select id="publicationCategory" class="form-select" required>
+                  <option value="">Seleccionar</option>
+                  <option>Terrenos</option>
+                  <option>Apartamentos</option>
+                  <option>Casas</option>
+                  <option>Vehiculos</option>
+                  <option>Maquinaria</option>
+                  <option>Equipos</option>
+                  <option>Habitaciones</option>
+                </select>
+              </div>
+              <fieldset class="col-md-6 col-xl-3">
+                <legend class="form-label">Modalidad</legend>
+                <div class="d-flex flex-wrap gap-3">
+                  <label class="form-check-label"><input class="form-check-input me-1 publication-mode" type="checkbox" value="sale">Venta</label>
+                  <label class="form-check-label"><input class="form-check-input me-1 publication-mode" type="checkbox" value="rent">Renta</label>
+                </div>
+              </fieldset>
+              <div class="col-md-6 col-xl-6">
+                <label class="form-label" for="publicationName">Nombre de la ficha</label>
+                <input id="publicationName" class="form-control" maxlength="120" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="publicationDescription">Descripción</label>
+                <textarea id="publicationDescription" class="form-control" rows="3" maxlength="1000" required></textarea>
+              </div>
+              <div id="propertySpecificFields" class="col-12">
+                <div class="row g-3">
+              <div class="col-md-6 col-xl-3">
+                <label class="form-label" for="publicationMeasures">Medidas</label>
+                <input id="publicationMeasures" class="form-control">
+              </div>
+              <div class="col-md-6 col-xl-3">
+                <label class="form-label" for="publicationDepartment">Departamento</label>
+                <select id="publicationDepartment" class="form-select" required>
+                  <option value="">Seleccionar</option>
+                </select>
+              </div>
+              <div class="col-md-6 col-xl-6">
+                <label class="form-label" for="publicationLocation">Ubicación detallada</label>
+                <input id="publicationLocation" class="form-control" required>
+              </div>
+              <fieldset class="col-md-6 col-xl-3 real-estate-only">
+                <legend class="form-label">Servicios</legend>
+                <div class="d-flex flex-wrap gap-3">
+                  <label class="form-check-label"><input class="form-check-input me-1 publication-service" type="checkbox" value="Agua">Agua</label>
+                  <label class="form-check-label"><input class="form-check-input me-1 publication-service" type="checkbox" value="Luz">Luz</label>
+                  <label class="form-check-label"><input class="form-check-input me-1 publication-service" type="checkbox" value="Drenaje">Drenaje</label>
+                  <label class="form-check-label"><input class="form-check-input me-1 publication-service" type="checkbox" value="Cisterna">Cisterna</label>
+                </div>
+              </fieldset>
+              <div class="col-md-6 col-xl-3 real-estate-only">
+                <label class="form-label" for="publicationServiceNotes">Nota de servicios</label>
+                <input id="publicationServiceNotes" class="form-control" placeholder="Ej.: Sin agua ni luz">
+              </div>
+              <div class="col-md-6 col-xl-3 real-estate-only">
+                <label class="form-label" for="publicationDeed">Escritura</label>
+                <select id="publicationDeed" class="form-select">
+                  <option value="">Sin especificar</option>
+                  <option value="Publica">Pública</option>
+                  <option value="Registrada">Registrada</option>
+                </select>
+              </div>
+              <fieldset class="col-md-6 col-xl-3">
+                <legend class="form-label">Formas de Pago</legend>
+                <div class="d-flex flex-wrap gap-3">
+                  <label class="form-check-label"><input class="form-check-input me-1 publication-payment" type="checkbox" value="Al Contado">Al Contado</label>
+                  <label class="form-check-label"><input class="form-check-input me-1 publication-payment" type="checkbox" value="Financiamiento">Financiamiento</label>
+                </div>
+              </fieldset>
+              <div class="col-md-6 col-xl-3">
+                <label class="form-label" for="publicationPrice">Precio</label>
+                <input id="publicationPrice" class="form-control">
+              </div>
+              <div class="col-md-6 col-xl-3">
+                <label class="form-label" for="publicationUnitPrice">Precio por unidad (opcional)</label>
+                <input id="publicationUnitPrice" class="form-control">
+              </div>
+              <div class="col-md-6 col-xl-3">
+                <label class="form-label" for="publicationPaymentTerms">Condiciones de pago</label>
+                <input id="publicationPaymentTerms" class="form-control">
+              </div>
+              <div class="col-md-6 col-xl-3">
+                <label class="form-label" for="publicationAvailability">Cantidad disponible</label>
+                <input id="publicationAvailability" class="form-control" type="number" min="1">
+              </div>
+              <div class="col-md-6 col-xl-3">
+                <label class="form-label" for="publicationAvailableUnit">Unidad disponible</label>
+                <select id="publicationAvailableUnit" class="form-select">
+                  <option value="unidades">Unidades</option>
+                  <option value="lotes">Lotes</option>
+                  <option value="habitaciones">Habitaciones</option>
+                  <option value="maquinarias">Maquinarias</option>
+                  <option value="equipos">Equipos</option>
+                </select>
+              </div>
+              <div class="col-md-6 col-xl-3 real-estate-only">
+                <label class="form-label" for="publicationWaterSources">Nacimientos de agua</label>
+                <input id="publicationWaterSources" class="form-control" type="number" min="1">
+              </div>
+              <div class="col-md-6 col-xl-6">
+                <label class="form-label" for="publicationExtras">Extras</label>
+                <input id="publicationExtras" class="form-control" placeholder="Separar con comas">
+              </div>
+                </div>
+              </div>
+              <fieldset id="equipmentSpecificFields" class="col-12" hidden>
+                <legend class="h6 fw-bold">Datos de maquinaria y equipos</legend>
+                <div class="row g-3">
+                  <div class="col-md-6 col-xl-3">
+                    <label class="form-label" for="publicationBrand">Marca</label>
+                    <input id="publicationBrand" class="form-control">
+                  </div>
+                  <div class="col-md-6 col-xl-3">
+                    <label class="form-label" for="publicationModel">Modelo</label>
+                    <input id="publicationModel" class="form-control">
+                  </div>
+                  <div class="col-md-6 col-xl-3">
+                    <label class="form-label" for="publicationYear">Año</label>
+                    <input id="publicationYear" class="form-control" inputmode="numeric">
+                  </div>
+                  <div class="col-md-6 col-xl-3">
+                    <label class="form-label" for="publicationCondition">Estado</label>
+                    <select id="publicationCondition" class="form-select">
+                      <option value="">Sin especificar</option>
+                      <option>Nuevo</option>
+                      <option>Usado</option>
+                      <option>Reacondicionado</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 col-xl-4">
+                    <label class="form-label" for="publicationUsageMetric">Uso (horas, km u otro)</label>
+                    <input id="publicationUsageMetric" class="form-control">
+                  </div>
+                  <div class="col-md-6 col-xl-4">
+                    <label class="form-label" for="publicationWarranty">Garantía</label>
+                    <input id="publicationWarranty" class="form-control">
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="publicationTechnicalDetails">Especificaciones técnicas</label>
+                    <textarea id="publicationTechnicalDetails" class="form-control" rows="3"></textarea>
+                  </div>
+                </div>
+              </fieldset>
+              <div class="col-md-6 col-xl-6">
+                <label class="form-label" for="publicationContactEmail">Correo de contacto del propietario (opcional)</label>
+                <input id="publicationContactEmail" class="form-control" type="email">
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="publicationImages">Fotografías</label>
+                <input id="publicationImages" class="form-control" type="file" accept="image/*" multiple>
+                <div id="publicationImagesPreview" class="publication-images-preview"></div>
+              </div>
+              <div class="col-12 d-flex align-items-center gap-3 flex-wrap">
+                <button id="publicationSubmitButton" class="btn btn-primary-custom" type="submit">Publicar</button>
+                <div id="publicationFeedback" role="status" aria-live="polite"></div>
+              </div>
+            </div>
+          </form>
+          <section id="approvalQueuePanel" class="developer-tools" hidden>
+            <h4 class="h5 fw-bold">Fichas pendientes de aprobación</h4>
+            <div id="approvalQueue" class="mt-3"></div>
+          </section>
+        </section>
+      </div>
+    </main>
+
+    <!-- Bootstrap 5 JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="properties-data.js"></script>
+
+    <script>
+      const DEVELOPER_ACCOUNT = {
+        username: 'admin',
+        password: 'RJW-Admin-Panel-2026!'
+      };
+      const localPropertyStateKey = 'rjw-properties-state-v2';
+      const seedProperties = window.RJW_INITIAL_PROPERTIES || [];
+
+      function readLocalPropertyState() {
+        try {
+          const savedState = JSON.parse(localStorage.getItem(localPropertyStateKey) || 'null');
+          if (savedState && Array.isArray(savedState.properties) && Array.isArray(savedState.pendingProperties)) {
+            return savedState;
+          }
+
+          const legacySubmissions = JSON.parse(localStorage.getItem('rjw-submitted-properties-v1') || '[]');
+          return {
+            properties: JSON.parse(JSON.stringify(seedProperties)),
+            pendingProperties: Array.isArray(legacySubmissions)
+              ? legacySubmissions.map((property) => ({
+                  ...property,
+                  publicationStatus: 'pending',
+                  verifiedByDeveloper: false
+                }))
+              : []
+          };
+        } catch {
+          return { properties: JSON.parse(JSON.stringify(seedProperties)), pendingProperties: [] };
+        }
+      }
+
+      const savedPropertyState = readLocalPropertyState();
+      let properties = savedPropertyState.properties;
+      let pendingProperties = savedPropertyState.pendingProperties;
+      let developerAuthenticated = false;
+      let developerLoginOpen = false;
+      let editingPropertyId = null;
+      let currentPropertyId = null;
+
+      const categories = [
+        'Terrenos',
+        'Apartamentos',
+        'Casas',
+        'Vehiculos',
+        'Maquinaria',
+        'Equipos',
+        'Habitaciones'
+      ];
+
+      const services = [
+        {
+          title: 'Asesoría Jurídica',
+          description: 'Revisión legal, contratos, escrituras y acompañamiento en procesos inmobiliarios.',
+          price: 'Desde $1,500',
+          icon: '⚖️'
+        },
+        {
+          title: 'Manejo de Propiedades',
+          description: 'Administración, renta y atención a inquilinos para propietarios.',
+          price: 'Desde $2,800',
+          icon: '🏢'
+        },
+        {
+          title: 'Compra y Venta',
+          description: 'Estrategia integral para encontrar oportunidades reales y cerrar con seguridad.',
+          price: 'Personalizado',
+          icon: '🤝'
+        },
+        {
+          title: 'Consultoría Inmobiliaria',
+          description: 'Evaluación de mercado, análisis de valor y orientación comparativa.',
+          price: 'Desde $3,200',
+          icon: '📊'
+        }
+      ];
+
+      const homeScreen = document.getElementById('homeScreen');
+      const saleScreen = document.getElementById('saleScreen');
+      const rentScreen = document.getElementById('rentScreen');
+      const servicesScreen = document.getElementById('servicesScreen');
+      const legalScreen = document.getElementById('legalScreen');
+      const categoryScreen = document.getElementById('categoryScreen');
+      const propertyDetailScreen = document.getElementById('propertyDetailScreen');
+      const publishScreen = document.getElementById('publishScreen');
+      const categoryGrid = document.getElementById('categoryGrid');
+      const servicesGrid = document.getElementById('servicesGrid');
+      const categoryTitle = document.getElementById('categoryTitle');
+      const filterDepartment = document.getElementById('filterDepartment');
+      const filterService = document.getElementById('filterService');
+      const filterDeed = document.getElementById('filterDeed');
+      const filterPayment = document.getElementById('filterPayment');
+      const propertyDetailGallery = document.getElementById('propertyDetailGallery');
+      const propertyDetailMode = document.getElementById('propertyDetailMode');
+      const propertyDetailName = document.getElementById('propertyDetailName');
+      const propertyDetailDescription = document.getElementById('propertyDetailDescription');
+      const propertySpecifications = document.getElementById('propertySpecifications');
+      const propertyDetailVerified = document.getElementById('propertyDetailVerified');
+      const propertyContactForm = document.getElementById('propertyContactForm');
+      const contactPropertyIndex = document.getElementById('contactPropertyIndex');
+      const contactFeedback = document.getElementById('contactFeedback');
+      const developerSessionStatus = document.getElementById('developerSessionStatus');
+      const btnShowDeveloperLogin = document.getElementById('btnShowDeveloperLogin');
+      const btnDeveloperLogout = document.getElementById('btnDeveloperLogout');
+      const developerLoginForm = document.getElementById('developerLoginForm');
+      const developerUsername = document.getElementById('developerUsername');
+      const developerPassword = document.getElementById('developerPassword');
+      const developerLoginFeedback = document.getElementById('developerLoginFeedback');
+      const developerPropertyActions = document.getElementById('developerPropertyActions');
+      const developerModeNotice = document.getElementById('developerModeNotice');
+      const approvalQueuePanel = document.getElementById('approvalQueuePanel');
+      const approvalQueue = document.getElementById('approvalQueue');
+      const propertyPublicationForm = document.getElementById('propertyPublicationForm');
+      const publicationDepartment = document.getElementById('publicationDepartment');
+      const publicationImages = document.getElementById('publicationImages');
+      const publicationImagesPreview = document.getElementById('publicationImagesPreview');
+      const publicationFeedback = document.getElementById('publicationFeedback');
+      const publicationCategory = document.getElementById('publicationCategory');
+      const publicationSpecificFields = document.getElementById('propertySpecificFields');
+      const equipmentSpecificFields = document.getElementById('equipmentSpecificFields');
+      const publicationSubmitButton = document.getElementById('publicationSubmitButton');
+      const activePropertiesCount = document.getElementById('activePropertiesCount');
+      const salePropertiesCount = document.getElementById('salePropertiesCount');
+      const rentPropertiesCount = document.getElementById('rentPropertiesCount');
+      const categoryContext = { mode: 'sale', category: 'Casas' };
+      const screens = [homeScreen, saleScreen, rentScreen, servicesScreen, legalScreen, categoryScreen, propertyDetailScreen, publishScreen];
+      const departments = [
+        'Alta Verapaz',
+        'Baja Verapaz',
+        'Chimaltenango',
+        'Chiquimula',
+        'El Progreso',
+        'Escuintla',
+        'Guatemala',
+        'Huehuetenango',
+        'Izabal',
+        'Jalapa',
+        'Jutiapa',
+        'Petén',
+        'Quetzaltenango',
+        'Quiché',
+        'Retalhuleu',
+        'Sacatepéquez',
+        'San Marcos',
+        'Santa Rosa',
+        'Sololá',
+        'Suchitepéquez',
+        'Totonicapán',
+        'Zacapa'
+      ];
+
+      function setActiveScreen(screenId) {
+        const activeScreenId = screenId.endsWith('Screen') ? screenId : `${screenId}Screen`;
+
+        screens.forEach((screen) => {
+          screen.classList.toggle('active', screen.id === activeScreenId);
+        });
+
+        document.querySelectorAll('.screen-link').forEach((button) => {
+          const matchesCurrentScreen = button.dataset.screen === screenId;
+          const matchesCategoryContext =
+            (screenId === 'categoryScreen' || screenId === 'propertyDetailScreen') &&
+            ((button.dataset.screen === 'sale' && categoryContext.mode === 'sale') ||
+              (button.dataset.screen === 'rent' && categoryContext.mode === 'rent'));
+
+          button.classList.toggle(
+            'active',
+            matchesCurrentScreen || matchesCategoryContext || (screenId === 'home' && button.dataset.screen === 'home')
+          );
+        });
+      }
+
+      function escapeHTML(value) {
+        return String(value ?? '').replace(/[&<>"']/g, (character) => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        })[character]);
+      }
+
+      function persistLocalPropertyState() {
+        try {
+          localStorage.setItem(localPropertyStateKey, JSON.stringify({ properties, pendingProperties }));
+          return true;
+        } catch {
+          return false;
+        }
+      }
+
+      function updateDeveloperControls() {
+        developerSessionStatus.textContent = developerAuthenticated ? 'Administrador conectado' : 'Sesión pública';
+        btnShowDeveloperLogin.hidden = developerAuthenticated || developerLoginOpen;
+        btnDeveloperLogout.hidden = !developerAuthenticated;
+        developerLoginForm.hidden = developerAuthenticated || !developerLoginOpen;
+        developerPropertyActions.hidden = !developerAuthenticated;
+        developerModeNotice.className = developerAuthenticated ? 'alert alert-info' : 'alert alert-warning';
+        developerModeNotice.textContent = developerAuthenticated
+          ? 'Administrador conectado. Los cambios se guardan en este navegador.'
+          : 'Las fichas publicadas por usuarios comunes quedan pendientes. Este acceso predeterminado es solo para demostración.';
+        renderApprovalQueue();
+      }
+
+      function initializeApplication() {
+        renderPropertyCounts();
+        renderServices();
+        updateDeveloperControls();
+        setActiveScreen('home');
+      }
+
+      function setPublicationFeedback(message, type = 'success') {
+        publicationFeedback.className = `alert alert-${type} py-2 mb-0`;
+        publicationFeedback.textContent = message;
+      }
+
+      function renderApprovalQueue() {
+        approvalQueuePanel.hidden = !developerAuthenticated;
+
+        if (!developerAuthenticated) {
+          return;
+        }
+
+        if (pendingProperties.length === 0) {
+          approvalQueue.innerHTML = '<p class="text-secondary mb-0">No hay fichas pendientes.</p>';
+          return;
+        }
+
+        approvalQueue.innerHTML = pendingProperties
+          .map((property) => {
+            const modesLabel = property.modes.map((mode) => mode === 'sale' ? 'Venta' : 'Renta').join(' y ');
+
+            return `
+              <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap border-bottom py-3">
+                <div>
+                  <strong>${escapeHTML(property.name)}</strong>
+                  <div class="small text-secondary">${escapeHTML(property.category)} · ${escapeHTML(modesLabel)}</div>
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-sm btn-success" type="button" data-queue-action="approve" data-property-id="${escapeHTML(property.id)}">Aprobar</button>
+                  <button class="btn btn-sm btn-outline-secondary" type="button" data-queue-action="reject" data-property-id="${escapeHTML(property.id)}">Rechazar</button>
+                </div>
+              </div>
+            `;
+          })
+          .join('');
+      }
+
+      async function compressImageFile(file) {
+        const imageUrl = URL.createObjectURL(file);
+        const image = new Image();
+
+        try {
+          await new Promise((resolve, reject) => {
+            image.onload = resolve;
+            image.onerror = () => reject(new Error(`No se pudo leer ${file.name}.`));
+            image.src = imageUrl;
+          });
+
+          const scale = Math.min(1, 1600 / Math.max(image.naturalWidth, image.naturalHeight));
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+          canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+          canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+
+          const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.78));
+          if (!blob) {
+            throw new Error(`No se pudo procesar ${file.name}.`);
+          }
+
+          return await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => reject(new Error(`No se pudo guardar ${file.name}.`));
+            reader.readAsDataURL(blob);
+          });
+        } finally {
+          URL.revokeObjectURL(imageUrl);
+        }
+      }
+
+      function getAvailableUnitLabel(unit) {
+        if (unit === 'lotes') return 'lotes';
+        if (unit === 'habitaciones') return 'habitaciones';
+        if (unit === 'equipos') return 'equipos';
+        if (unit === 'maquinarias') return 'maquinarias';
+        return 'unidades';
+      }
+
+      function renderEmptyCategoryState(category) {
+        categoryGrid.innerHTML = `
+          <div class="col-12">
+            <div class="alert alert-light border text-center py-5 mb-0">
+              <div class="display-6 mb-3">📦</div>
+              <h4 class="fw-bold mb-2">No hay propiedades registradas</h4>
+              <p class="text-secondary mb-0">
+                La categoría <strong>${category}</strong> está preparada para recibir datos cuando se suba la base de datos.
+              </p>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderNoFilterResults() {
+        categoryGrid.innerHTML = `
+          <div class="col-12">
+            <div class="alert alert-light border text-center py-5 mb-0">
+              <h4 class="fw-bold mb-2">No hay fichas que coincidan</h4>
+              <p class="text-secondary mb-0">Prueba con otros filtros o límpialos para ver todas las propiedades.</p>
+            </div>
+          </div>
+        `;
+      }
+
+      function populateFilter(select, options) {
+        options.forEach((option) => {
+          const element = document.createElement('option');
+          element.value = option;
+          element.textContent = option;
+          select.append(element);
+        });
+      }
+
+      function renderPropertyCounts() {
+        activePropertiesCount.textContent = properties.length;
+        salePropertiesCount.textContent = properties.filter((property) => property.modes.includes('sale')).length;
+        rentPropertiesCount.textContent = properties.filter((property) => property.modes.includes('rent')).length;
+      }
+
+      function renderCategoryView(category, mode = 'sale') {
+        categoryContext.mode = mode;
+        categoryContext.category = category;
+        const label = mode === 'sale' ? 'En venta' : 'En renta';
+        categoryTitle.textContent = `${category} (${label})`;
+        filterDepartment.value = '';
+        filterService.value = '';
+        filterDeed.value = '';
+        filterPayment.value = '';
+
+        renderCategoryProperties();
+      }
+
+      function renderCategoryProperties() {
+        const categoryProperties = properties.filter(
+          (property) =>
+            property.category === categoryContext.category &&
+            property.modes.includes(categoryContext.mode)
+        );
+
+        if (categoryProperties.length === 0) {
+          renderEmptyCategoryState(categoryContext.category);
+          return;
+        }
+
+        const filteredProperties = categoryProperties.filter((property) =>
+          (!filterDepartment.value || property.department === filterDepartment.value) &&
+          (!filterService.value || property.services.includes(filterService.value)) &&
+          (!filterDeed.value || property.deedType === filterDeed.value) &&
+          (!filterPayment.value || property.paymentOptions.includes(filterPayment.value))
+        );
+
+        if (filteredProperties.length === 0) {
+          renderNoFilterResults();
+          return;
+        }
+
+        const label = categoryContext.mode === 'sale' ? 'En venta' : 'En renta';
+        categoryGrid.innerHTML = filteredProperties
+          .map((property) => {
+            const verifiedBadge = property.verifiedByDeveloper
+              ? '<span class="verified-badge mb-2">Proyecto Oficial · Verificado por el Desarrollador</span>'
+              : '';
+
+            return `
+              <div class="col-md-6 col-xl-4">
+                <article class="property-card h-100">
+                  ${renderPropertyCarousel(property, `property-carousel-${escapeHTML(property.id)}`, 'property-photo')}
+                  <div class="p-3">
+                    <span class="badge badge-sale mb-2">${label}</span>
+                    ${verifiedBadge}
+                    <h4 class="fw-bold mb-2">${escapeHTML(property.name)}</h4>
+                    <p class="text-secondary mb-0">${escapeHTML(property.description)}</p>
+                    ${property.availableCount ? `<span class="badge bg-success mt-3">${escapeHTML(property.availableCount)} ${getAvailableUnitLabel(property.availableUnit)} disponibles</span>` : ''}
+                    <button class="btn btn-link p-0 d-block mt-3 text-decoration-none" data-property-id="${escapeHTML(property.id)}" type="button">Ver detalles</button>
+                  </div>
+                </article>
+              </div>
+            `;
+          })
+          .join('');
+      }
+
+      function renderPropertyCarousel(property, carouselId, photoClass) {
+        const images = property.images || [property.image];
+        const alts = property.imageAlts || [property.imageAlt];
+        const hasMultipleImages = images.length > 1;
+
+        return `
+          <div id="${escapeHTML(carouselId)}" class="property-carousel ${photoClass === 'property-detail-photo' ? 'property-carousel-detail' : ''}">
+            <div class="property-carousel-track">
+              ${images.map((image, index) => `
+                  <img class="${photoClass} property-carousel-slide ${index === 0 ? 'active' : ''}" src="${escapeHTML(image)}" alt="${escapeHTML(alts[index] || property.name)}">
+              `).join('')}
+            </div>
+            ${hasMultipleImages ? `
+              <button class="property-carousel-arrow property-carousel-prev" type="button" data-carousel-id="${escapeHTML(carouselId)}" data-carousel-step="-1" aria-label="Foto anterior">
+                <span aria-hidden="true">&#x2039;</span>
+              </button>
+              <button class="property-carousel-arrow property-carousel-next" type="button" data-carousel-id="${escapeHTML(carouselId)}" data-carousel-step="1" aria-label="Foto siguiente">
+                <span aria-hidden="true">&#x203A;</span>
+              </button>
+              <div class="property-carousel-indicators">
+                ${images.map((image, index) => `
+                  <button class="property-carousel-indicator ${index === 0 ? 'active' : ''}" type="button" data-carousel-id="${escapeHTML(carouselId)}" data-carousel-slide="${index}" aria-label="Ir a foto ${index + 1}" ${index === 0 ? 'aria-current="true"' : ''}></button>
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }
+
+      function renderPropertyDetail(property) {
+        const label = categoryContext.mode === 'sale' ? 'En venta' : 'En renta';
+        const specifications = [
+          ['Medidas', property.measures],
+          ['Ubicación', property.location],
+          ['Servicios', property.serviceNotes || property.services.join(', ')],
+          ...(property.brand ? [['Marca', property.brand]] : []),
+          ...(property.model ? [['Modelo', property.model]] : []),
+          ...(property.year ? [['Año', property.year]] : []),
+          ...(property.condition ? [['Estado', property.condition]] : []),
+          ...(property.usageMetric ? [['Uso', property.usageMetric]] : []),
+          ...(property.technicalDetails ? [['Especificaciones técnicas', property.technicalDetails]] : []),
+          ...(property.warranty ? [['Garantía', property.warranty]] : []),
+          ...(property.waterSources ? [['Nacimiento de agua', property.waterSources]] : []),
+          ...(property.availableCount ? [[`${getAvailableUnitLabel(property.availableUnit)} disponibles`, property.availableCount]] : []),
+          ...(property.extras?.length ? [['Extra', property.extras.join(', ')]] : []),
+          ...(property.paymentTerms ? [['Condiciones de pago', property.paymentTerms]] : []),
+          ...(property.documentStatus ? [['Escritura', property.documentStatus]] : []),
+          ['Formas de Pago', property.paymentOptions.join(', ')],
+          ['Precio', property.price],
+          ...(property.unitPrice ? [['Precio por lote', property.unitPrice]] : [])
+        ];
+
+        propertyDetailGallery.innerHTML = renderPropertyCarousel(property, 'property-detail-carousel', 'property-detail-photo');
+        currentPropertyId = property.id;
+        propertyDetailMode.textContent = label;
+        propertyDetailVerified.hidden = !property.verifiedByDeveloper;
+        developerPropertyActions.hidden = !developerAuthenticated;
+        propertyDetailName.textContent = property.name;
+        propertyDetailDescription.textContent = property.description;
+        contactPropertyIndex.value = property.id;
+        propertyContactForm.reset();
+        contactFeedback.textContent = '';
+        propertySpecifications.innerHTML = specifications
+          .map(([label, value]) => {
+            const icon = getSpecificationIcon(label);
+
+            return `
+              <div class="col-12">
+                <div class="property-specification ${icon ? '' : 'property-specification-no-icon'}">
+                  ${icon ? `<img class="property-specification-icon" src="${icon}" alt="" aria-hidden="true">` : ''}
+                  <div class="property-specification-copy">
+                    <dt>${escapeHTML(label)}</dt>
+                    <dd>${escapeHTML(value)}</dd>
+                  </div>
+                </div>
+              </div>
+            `;
+          })
+          .join('');
+      }
+
+      function getSpecificationIcon(label) {
+        const normalizedLabel = label.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        const iconRules = [
+          [/medidas|disponibles/, 'Regla%20azul%20marino%20minimalista.png'],
+          [/ubicacion/, '%C3%8Dcono%20de%20ubicaci%C3%B3n%20sobre%20mapa%20plegado.png'],
+          [/servicios|nacimiento|extra/, '%C3%8Dcono%20azul%20de%20servicios%20y%20utilidades.png'],
+          [/escritura/, 'Contrato%20inmobiliario%20legal.png'],
+          [/pago/, 'Icono%20de%20transferencia%20y%20pagos.png'],
+          [/precio/, 'Etiqueta%20de%20precio%20y%20monedas.png']
+        ];
+        const iconRule = iconRules.find(([pattern]) => pattern.test(normalizedLabel));
+
+        return iconRule ? iconRule[1] : '';
+      }
+
+      function renderServices() {
+        servicesGrid.innerHTML = services
+          .map(
+            (service) => `
+              <div class="col-md-6 col-xl-3">
+                <article class="service-card h-100">
+                  <div class="service-icon">${service.icon}</div>
+                  <div class="p-3">
+                    <span class="badge badge-service mb-2">Servicio</span>
+                    <h4 class="fw-bold mb-2">${service.title}</h4>
+                    <p class="text-secondary small mb-3">${service.description}</p>
+                    <p class="fw-bold text-success mb-0">${service.price}</p>
+                  </div>
+                </article>
+              </div>
+            `
+          )
+          .join('');
+      }
+
+      let publicationPreviewUrls = [];
+
+      function clearPublicationImagePreview() {
+        publicationPreviewUrls.forEach((url) => URL.revokeObjectURL(url));
+        publicationPreviewUrls = [];
+        publicationImagesPreview.innerHTML = '';
+      }
+
+      function updatePublicationImagePreview() {
+        clearPublicationImagePreview();
+        Array.from(publicationImages.files).slice(0, 8).forEach((file) => {
+          const imageUrl = URL.createObjectURL(file);
+          publicationPreviewUrls.push(imageUrl);
+          const image = document.createElement('img');
+          image.src = imageUrl;
+          image.alt = `Vista previa: ${file.name}`;
+          publicationImagesPreview.append(image);
+        });
+      }
+
+      function updatePublicationCategoryFields() {
+        const equipmentCategory = ['Vehiculos', 'Maquinaria', 'Equipos'].includes(publicationCategory.value);
+        publicationSpecificFields.hidden = false;
+        equipmentSpecificFields.hidden = !equipmentCategory;
+        publicationDepartment.required = !equipmentCategory;
+        document.getElementById('publicationLocation').required = !equipmentCategory;
+        publicationSpecificFields.querySelectorAll('.real-estate-only').forEach((field) => {
+          field.hidden = equipmentCategory;
+        });
+      }
+
+      function editProperty(propertyId) {
+        if (!developerAuthenticated) {
+          return;
+        }
+
+        const property = properties.find((item) => item.id === propertyId);
+        if (!property) {
+          return;
+        }
+
+        propertyPublicationForm.reset();
+        editingPropertyId = property.id;
+        publicationCategory.value = property.category;
+        document.querySelectorAll('.publication-mode').forEach((input) => {
+          input.checked = property.modes.includes(input.value);
+        });
+        document.getElementById('publicationName').value = property.name || '';
+        document.getElementById('publicationDescription').value = property.description || '';
+        document.getElementById('publicationMeasures').value = property.measures || '';
+        publicationDepartment.value = property.department || '';
+        document.getElementById('publicationLocation').value = property.location || '';
+        document.querySelectorAll('.publication-service').forEach((input) => {
+          input.checked = (property.services || []).includes(input.value);
+        });
+        document.getElementById('publicationServiceNotes').value = property.serviceNotes || '';
+        document.getElementById('publicationDeed').value = property.deedType || '';
+        document.querySelectorAll('.publication-payment').forEach((input) => {
+          input.checked = (property.paymentOptions || []).includes(input.value);
+        });
+        document.getElementById('publicationPrice').value = property.price || '';
+        document.getElementById('publicationUnitPrice').value = property.unitPrice || '';
+        document.getElementById('publicationPaymentTerms').value = property.paymentTerms || '';
+        document.getElementById('publicationAvailability').value = property.availableCount || '';
+        document.getElementById('publicationAvailableUnit').value = property.availableUnit || 'unidades';
+        document.getElementById('publicationWaterSources').value = property.waterSources || '';
+        document.getElementById('publicationExtras').value = (property.extras || []).join(', ');
+        document.getElementById('publicationContactEmail').value = property.contactEmail || '';
+        document.getElementById('publicationBrand').value = property.brand || '';
+        document.getElementById('publicationModel').value = property.model || '';
+        document.getElementById('publicationYear').value = property.year || '';
+        document.getElementById('publicationCondition').value = property.condition || '';
+        document.getElementById('publicationUsageMetric').value = property.usageMetric || '';
+        document.getElementById('publicationTechnicalDetails').value = property.technicalDetails || '';
+        document.getElementById('publicationWarranty').value = property.warranty || '';
+        publicationImages.value = '';
+        publicationImages.required = false;
+        publicationImagesPreview.innerHTML = '<p class="small text-secondary mb-0">Las fotos actuales se mantienen si no seleccionas nuevas.</p>';
+        document.getElementById('publishTitle').textContent = 'Editar ficha';
+        publicationSubmitButton.textContent = 'Guardar cambios';
+        updatePublicationCategoryFields();
+        setActiveScreen('publish');
+      }
+
+      publicationCategory.addEventListener('change', updatePublicationCategoryFields);
+
+      btnShowDeveloperLogin.addEventListener('click', () => {
+        developerLoginOpen = true;
+        updateDeveloperControls();
+        if (developerLoginOpen) {
+          developerUsername.focus();
+        }
+      });
+
+      developerLoginForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        developerLoginFeedback.textContent = '';
+        const validCredentials =
+          developerUsername.value.trim() === DEVELOPER_ACCOUNT.username &&
+          developerPassword.value === DEVELOPER_ACCOUNT.password;
+
+        if (validCredentials) {
+          developerAuthenticated = true;
+          developerLoginOpen = false;
+          developerUsername.value = '';
+          developerPassword.value = '';
+          updateDeveloperControls();
+          developerLoginFeedback.className = 'alert alert-success py-2 mb-0';
+          developerLoginFeedback.textContent = 'Sesión de administrador iniciada en este navegador.';
+        } else {
+          developerLoginFeedback.className = 'alert alert-danger py-2 mb-0';
+          developerLoginFeedback.textContent = 'Usuario o contraseña incorrectos.';
+          developerPassword.value = '';
+        }
+      });
+
+      btnDeveloperLogout.addEventListener('click', () => {
+        developerAuthenticated = false;
+        developerLoginOpen = false;
+        updateDeveloperControls();
+      });
+
+      publicationImages.addEventListener('change', updatePublicationImagePreview);
+
+      propertyPublicationForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        setPublicationFeedback('');
+
+        const files = Array.from(publicationImages.files);
+        const modes = Array.from(document.querySelectorAll('.publication-mode:checked'), (input) => input.value);
+        const wasEditing = Boolean(editingPropertyId);
+        const existingProperty = editingPropertyId
+          ? properties.find((property) => property.id === editingPropertyId)
+          : null;
+
+        if (wasEditing && !existingProperty) {
+          setPublicationFeedback('La ficha ya no está disponible.', 'danger');
+          return;
+        }
+        if (wasEditing && !developerAuthenticated) {
+          setPublicationFeedback('Inicia sesión como administrador para editar fichas.', 'danger');
+          return;
+        }
+
+        if (modes.length === 0) {
+          setPublicationFeedback('Selecciona Venta, Renta o ambas modalidades.', 'warning');
+          return;
+        }
+
+        if ((!wasEditing && files.length === 0) || files.length > 8) {
+          setPublicationFeedback('Selecciona de 1 a 8 imágenes para la ficha.', 'warning');
+          return;
+        }
+
+        try {
+          const images = files.length
+            ? await Promise.all(files.map(compressImageFile))
+            : (existingProperty.images || [existingProperty.image]);
+          const imageAlts = files.length
+            ? images.map((image, index) => `${document.getElementById('publicationName').value.trim()}: fotografía ${index + 1}`)
+            : (existingProperty.imageAlts || [existingProperty.imageAlt]);
+          const name = document.getElementById('publicationName').value.trim();
+          const equipmentCategory = ['Vehiculos', 'Maquinaria', 'Equipos'].includes(publicationCategory.value);
+          const deedType = document.getElementById('publicationDeed').value;
+          const availableCount = document.getElementById('publicationAvailability').value;
+          const waterSources = document.getElementById('publicationWaterSources').value;
+          const property = {
+            id: wasEditing ? editingPropertyId : `rjw-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+            category: publicationCategory.value,
+            modes,
+            name,
+            description: document.getElementById('publicationDescription').value.trim(),
+            measures: document.getElementById('publicationMeasures').value.trim(),
+            location: document.getElementById('publicationLocation').value.trim(),
+            department: publicationDepartment.value,
+            services: equipmentCategory ? [] : Array.from(document.querySelectorAll('.publication-service:checked'), (input) => input.value),
+            serviceNotes: equipmentCategory ? '' : document.getElementById('publicationServiceNotes').value.trim(),
+            deedType: equipmentCategory ? '' : deedType,
+            documentStatus: !equipmentCategory && deedType ? `Escritura ${deedType}` : '',
+            paymentOptions: Array.from(document.querySelectorAll('.publication-payment:checked'), (input) => input.value),
+            paymentTerms: document.getElementById('publicationPaymentTerms').value.trim(),
+            price: document.getElementById('publicationPrice').value.trim(),
+            unitPrice: document.getElementById('publicationUnitPrice').value.trim(),
+            availableCount: availableCount ? Number(availableCount) : undefined,
+            availableUnit: document.getElementById('publicationAvailableUnit').value,
+            waterSources: !equipmentCategory && waterSources ? Number(waterSources) : undefined,
+            extras: document.getElementById('publicationExtras').value.split(',').map((item) => item.trim()).filter(Boolean),
+            contactEmail: document.getElementById('publicationContactEmail').value.trim(),
+            brand: document.getElementById('publicationBrand').value.trim(),
+            model: document.getElementById('publicationModel').value.trim(),
+            year: document.getElementById('publicationYear').value.trim(),
+            condition: document.getElementById('publicationCondition').value,
+            usageMetric: document.getElementById('publicationUsageMetric').value.trim(),
+            technicalDetails: document.getElementById('publicationTechnicalDetails').value.trim(),
+            warranty: document.getElementById('publicationWarranty').value.trim(),
+            images,
+            imageAlts,
+            image: images[0],
+            imageAlt: imageAlts[0]
+          };
+
+          const previousProperties = [...properties];
+          const previousPendingProperties = [...pendingProperties];
+          if (wasEditing) {
+            const propertyIndex = properties.findIndex((item) => item.id === editingPropertyId);
+            properties[propertyIndex] = {
+              ...existingProperty,
+              ...property,
+              publicationStatus: 'published',
+              verifiedByDeveloper: true
+            };
+            setPublicationFeedback('Cambios guardados en este navegador.');
+          } else if (developerAuthenticated) {
+            property.publicationStatus = 'published';
+            property.verifiedByDeveloper = true;
+            property.userSubmitted = true;
+            properties.push(property);
+            setPublicationFeedback('Ficha publicada con la insignia Proyecto Oficial · Verificado por el Desarrollador.');
+          } else {
+            property.publicationStatus = 'pending';
+            property.verifiedByDeveloper = false;
+            property.userSubmitted = true;
+            pendingProperties.push(property);
+            setPublicationFeedback('Ficha enviada; quedará pendiente de aprobación.', 'info');
+          }
+
+          if (!persistLocalPropertyState()) {
+            properties = previousProperties;
+            pendingProperties = previousPendingProperties;
+            setPublicationFeedback('El navegador no pudo guardar los cambios. Libera espacio e inténtalo de nuevo.', 'danger');
+            return;
+          }
+
+          renderPropertyCounts();
+          renderApprovalQueue();
+          if (categoryScreen.classList.contains('active')) renderCategoryProperties();
+          editingPropertyId = null;
+          document.getElementById('publishTitle').textContent = 'Publicar ficha';
+          publicationSubmitButton.textContent = 'Publicar';
+          propertyPublicationForm.reset();
+          updatePublicationCategoryFields();
+          clearPublicationImagePreview();
+        } catch (error) {
+          setPublicationFeedback(error.message || 'No se pudo procesar la publicación.', 'danger');
+        }
+      });
+
+      approvalQueue.addEventListener('click', (event) => {
+        const actionButton = event.target.closest('[data-queue-action]');
+        if (!actionButton || !developerAuthenticated) {
+          return;
+        }
+
+        const propertyId = actionButton.dataset.propertyId;
+        const action = actionButton.dataset.queueAction;
+        const pendingIndex = pendingProperties.findIndex((property) => property.id === propertyId);
+        if (pendingIndex < 0) {
+          return;
+        }
+
+        const previousProperties = [...properties];
+        const previousPendingProperties = [...pendingProperties];
+        const [property] = pendingProperties.splice(pendingIndex, 1);
+        if (action === 'approve') {
+          property.publicationStatus = 'published';
+          property.verifiedByDeveloper = true;
+          properties.push(property);
+        }
+
+        if (!persistLocalPropertyState()) {
+          properties = previousProperties;
+          pendingProperties = previousPendingProperties;
+          setPublicationFeedback('El navegador no pudo guardar la decisión.', 'danger');
+          return;
+        }
+
+        renderPropertyCounts();
+        renderApprovalQueue();
+        setPublicationFeedback(action === 'approve' ? 'Ficha aprobada y publicada.' : 'Ficha rechazada y retirada.');
+      });
+
+      propertyContactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const property = properties.find((item) => item.id === contactPropertyIndex.value);
+
+        if (!property) {
+          contactFeedback.className = 'alert alert-danger mb-0';
+          contactFeedback.textContent = 'No se encontró la ficha asociada a este mensaje.';
+          return;
+        }
+
+        const recipient = property.contactEmail || 'contacto de RJW (sin correo configurado)';
+        contactFeedback.className = 'alert alert-success mb-0';
+        contactFeedback.textContent = `Simulación completada: mensaje preparado para ${recipient}. No se envió un correo real.`;
+        propertyContactForm.reset();
+      });
+
+      document.getElementById('btnEditProperty').addEventListener('click', () => {
+        editProperty(currentPropertyId);
+      });
+
+      document.getElementById('btnDeleteProperty').addEventListener('click', () => {
+        if (!developerAuthenticated || !currentPropertyId || !window.confirm('¿Eliminar esta publicación? Esta acción no se puede deshacer.')) {
+          return;
+        }
+
+        const propertyIndex = properties.findIndex((property) => property.id === currentPropertyId);
+        if (propertyIndex < 0) {
+          return;
+        }
+
+        const [deletedProperty] = properties.splice(propertyIndex, 1);
+        if (!persistLocalPropertyState()) {
+          properties.splice(propertyIndex, 0, deletedProperty);
+          developerModeNotice.className = 'alert alert-danger';
+          developerModeNotice.textContent = 'El navegador no pudo guardar la eliminación.';
+          return;
+        }
+
+        renderPropertyCounts();
+        renderCategoryProperties();
+        setActiveScreen('categoryScreen');
+      });
+
+      document.getElementById('btnBackToCategory').addEventListener('click', () => {
+        const returnScreen = categoryContext.mode === 'rent' ? 'rent' : 'sale';
+        setActiveScreen(returnScreen);
+      });
+
+      document.getElementById('btnBackToListing').addEventListener('click', () => {
+        setActiveScreen('categoryScreen');
+      });
+
+      categoryGrid.addEventListener('click', (event) => {
+        const propertyButton = event.target.closest('[data-property-id]');
+
+        if (!propertyButton) {
+          return;
+        }
+
+        const property = properties.find((item) => item.id === propertyButton.dataset.propertyId);
+        if (!property) {
+          return;
+        }
+        renderPropertyDetail(property);
+        setActiveScreen('propertyDetailScreen');
+      });
+
+      document.addEventListener('click', (event) => {
+        const control = event.target.closest('[data-carousel-id]');
+
+        if (!control) {
+          return;
+        }
+
+        const carousel = document.getElementById(control.dataset.carouselId);
+        const slides = Array.from(carousel.querySelectorAll('.property-carousel-slide'));
+        const activeIndex = slides.findIndex((slide) => slide.classList.contains('active'));
+        const requestedIndex = control.dataset.carouselSlide;
+        const nextIndex = requestedIndex === undefined
+          ? (activeIndex + Number(control.dataset.carouselStep) + slides.length) % slides.length
+          : Number(requestedIndex);
+
+        slides.forEach((slide, index) => {
+          slide.classList.toggle('active', index === nextIndex);
+        });
+
+        carousel.querySelectorAll('.property-carousel-indicator').forEach((indicator, index) => {
+          indicator.classList.toggle('active', index === nextIndex);
+          if (index === nextIndex) {
+            indicator.setAttribute('aria-current', 'true');
+          } else {
+            indicator.removeAttribute('aria-current');
+          }
+        });
+      });
+
+      document.querySelectorAll('.screen-link').forEach((button) => {
+        button.addEventListener('click', () => {
+          const screenId = button.dataset.screen;
+          setActiveScreen(screenId);
+          if (screenId === 'publish') {
+            renderApprovalQueue();
+          }
+
+          if (window.matchMedia('(max-width: 991.98px)').matches) {
+            bootstrap.Collapse.getOrCreateInstance(document.getElementById('navbarRJW'), { toggle: false }).hide();
+          }
+        });
+      });
+
+      document.querySelectorAll('.category-link').forEach((button) => {
+        button.addEventListener('click', () => {
+          const category = button.dataset.category;
+          const mode = button.dataset.mode || 'sale';
+          renderCategoryView(category, mode);
+          setActiveScreen('categoryScreen');
+          button.closest('.dropdown-menu')?.classList.remove('show');
+          button.blur();
+
+          if (window.matchMedia('(max-width: 991.98px)').matches) {
+            bootstrap.Collapse.getOrCreateInstance(document.getElementById('navbarRJW'), { toggle: false }).hide();
+          }
+        });
+      });
+
+      populateFilter(filterDepartment, departments);
+      populateFilter(publicationDepartment, departments);
+      populateFilter(filterService, ['Agua', 'Luz', 'Drenaje']);
+      updatePublicationCategoryFields();
+
+      [filterDepartment, filterService, filterDeed, filterPayment].forEach((filter) => {
+        filter.addEventListener('change', renderCategoryProperties);
+      });
+
+      document.getElementById('btnClearFilters').addEventListener('click', () => {
+        filterDepartment.value = '';
+        filterService.value = '';
+        filterDeed.value = '';
+        filterPayment.value = '';
+        renderCategoryProperties();
+      });
+
+      initializeApplication();
+    </script>
+  </body>
+</html>
+
