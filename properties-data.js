@@ -217,5 +217,31 @@ window.RJW_INITIAL_PROPERTIES = [
       'Puertas interiores del apartamento',
       'Habitación del apartamento'
     ]
+  },
+  {
+    id: 'altaire-zona-12',
+    category: 'Apartamentos',
+    modes: ['sale', 'rent'],
+    name: 'Apartamentos en Altaire Zona 12',
+    description: 'Modernos apartamentos ubicados en Altaire, Zona 12 de la Ciudad de Guatemala, con excelentes amenidades y áreas comunes.',
+    measures: 'Desde 56M2',
+    location: 'Zona 12, Ciudad de Guatemala',
+    department: 'Guatemala',
+    services: ['Agua', 'Luz', 'Drenaje', 'Gimnasio', 'Áreas Recreativas', 'Sky Lounge'],
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Escritura Registrada',
+    price: 'Q.1,000,000.00 / Renta desde Q.10,000.00',
+    availableCount: 3,
+    availableUnit: 'habitaciones',
+    images: [
+      'Altaire1.jpg',
+      'Altaire2.jpg',
+      'Altaire3.jpg'
+    ],
+    imageAlts: [
+      'Vista exterior o principal de Altaire Zona 12',
+      'Vista de los ambientes internos de los apartamentos Altaire',
+      'Áreas comunes o amenidades de Altaire Zona 12'
+    ]
   }
 ];
