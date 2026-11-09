@@ -243,5 +243,135 @@ window.RJW_INITIAL_PROPERTIES = [
       'Vista de los ambientes internos de los apartamentos Altaire',
       'Áreas comunes o amenidades de Altaire Zona 12'
     ]
+  },
+  {
+    id: 'lares-17-zona-17',
+    category: 'Apartamentos',
+    modes: ['sale', 'rent'],
+    name: 'LaRes 17, Apartamentos en Zona 17',
+    description: 'Apartamentos modernos ubicados en LaRes 17, Zona 17 de la Ciudad de Guatemala, con áreas verdes y amenidades completas.',
+    measures: 'Desde 47M2',
+    location: 'Zona 17, Ciudad de Guatemala',
+    department: 'Guatemala',
+    services: ['Agua', 'Luz', 'Drenaje', 'Gimnasio', 'Áreas Recreativas', 'Áreas Verdes'],
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Escritura Registrada',
+    price: 'Q.498,000 / Renta desde Q.3,000',
+    images: [
+      'Lares1.jpg',
+      'Lares2.jpg',
+      'Lares3.jpg'
+    ],
+    imageAlts: [
+      'Fachada o vista principal de LaRes 17 Zona 17',
+      'Interiores de los apartamentos LaRes 17',
+      'Áreas verdes o amenidades de LaRes 17'
+    ]
+  },
+  {
+    id: 'athenea-15-vista-hermosa',
+    category: 'Apartamentos',
+    modes: ['sale'],
+    name: 'Athenea 15 Vista Hermosa',
+    description: 'Exclusivos apartamentos ubicados en Vista Hermosa II, Zona 15 de la Ciudad de Guatemala, con amenidades premium y vistas espectaculares.',
+    measures: 'Desde 61M2',
+    location: 'Zona 15 Vista Hermosa II, Ciudad de Guatemala',
+    department: 'Guatemala',
+    services: ['Agua', 'Luz', 'Drenaje', 'Gimnasio', 'Terraza social', 'Terrace Lounge', 'Roof Garden', 'Área de BBQ', 'Fire Pit', 'Área de Juegos Infantiles'],
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Escritura Registrada',
+    price: 'Desde Q.1,000,000',
+    images: [
+      'Athenea1.jpg',
+      'Athenea2.jpg',
+      'Athenea3.jpg'
+    ],
+    imageAlts: [
+      'Fachada o vista principal de Athenea 15 Vista Hermosa',
+      'Vistas interiores del apartamento Athenea 15',
+      'Amenidades y terrazas de Athenea 15 Vista Hermosa'
+    ]
+  },
+  {
+    id: 'casa-apartamento-zona-2',
+    category: 'Casas',
+    modes: ['sale'],
+    name: 'Apartamento en Venta Zona 2',
+    description: 'Propiedad ubicada en Zona 2 El Zapote, Ciudad de Guatemala. Cuenta con excelentes áreas comunes y amenidades.',
+    measures: 'Desde 39M2',
+    location: 'Zona 2 El Zapote, Ciudad de Guatemala',
+    department: 'Guatemala',
+    services: ['Agua', 'Luz', 'Drenaje', 'Gimnasio', 'Terraza Social', 'Cinema', 'Salón para Eventos'],
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Escritura Registrada',
+    price: 'Q.725,000',
+    images: [
+      'UMG1.jpg',
+      'UMG2.jpg',
+      'UMG3.jpg',
+      'UMG4.jpg'
+    ],
+    imageAlts: [
+      'Fachada principal de la propiedad en Zona 2',
+      'Vista interior de los ambientes',
+      'Áreas sociales y amenidades',
+      'Vistas adicionales de la propiedad'
+    ]
+  },
+  {
+    id: 'casa-colinas-de-minerva',
+    category: 'Casas',
+    modes: ['sale'],
+    name: 'Venta Casa Condominio Colinas de Minerva Zona 11 de Mixco',
+    description: 'Casa en condominio residencial Colinas de Minerva, Zona 11 de Mixco. Incluye sala, comedor, baño, 3 dormitorios, 1 parqueo y patio.',
+    measures: 'Desde 73M2',
+    location: 'Colinas de Minerva, Zona 11 de Mixco',
+    department: 'Guatemala',
+    services: ['Agua', 'Luz', 'Drenaje'],
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Escritura Registrada',
+    price: 'Q.525,000',
+    availableCount: 3,
+    availableUnit: 'habitaciones',
+    extras: ['Sala', 'Comedor', '1 Baño', '1 Parqueo', 'Patio'],
+    images: [
+      'Minerva1.jpg',
+      'Minerva2.jpg',
+      'Minerva3.jpg'
+    ],
+    imageAlts: [
+      'Fachada exterior de la casa en Colinas de Minerva',
+      'Ambientes interiores de la residencia',
+      'Patio y parqueo de la casa'
+    ]
+  },
+  {
+    id: 'casa-fuentes-del-valle-2',
+    category: 'Casas',
+    modes: ['sale'],
+    name: 'Casa en Fuentes del Valle 2 Zona 18',
+    description: 'Casa residencial en Fuentes del Valle 2, Zona 18. Distribución funcional con sala, comedor, 2 baños, 3 dormitorios, parqueo, patio y área de lavandería.',
+    measures: '73M2',
+    location: 'Zona 18, Ciudad de Guatemala',
+    department: 'Guatemala',
+    services: ['Agua', 'Luz', 'Drenaje'],
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Escritura Registrada',
+    price: 'Q.495,000 (Enganche desde Q.105,000)',
+    availableCount: 3,
+    availableUnit: 'habitaciones',
+    extras: ['Sala', 'Comedor', '2 Baños', '1 Parqueo', 'Patio', 'Área de Lavandería'],
+    images: [
+      'Fuentes1.jpg',
+      'Fuentes2.jpg',
+      'Fuentes3.jpg',
+      'Fuentes4.jpg'
+    ],
+    imageAlts: [
+      'Vista exterior de la casa en Fuentes del Valle 2',
+      'Interiores de la sala y comedor',
+      'Habitaciones y baños de la vivienda',
+      'Área de lavandería y patio'
+    ]
   }
 ];
