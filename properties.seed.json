@@ -198,7 +198,27 @@
       "WhatsApp%20Image%202026-11-06%20at%2010.10.29%20PM%20%281%29.jpeg",
       "WhatsApp%20Image%202026-11-06%20at%2010.10.29%20PM%20%282%29.jpeg",
       "WhatsApp%20Image%202026-11-06%20at%2010.10.29%20PM%20%283%29.jpeg"
-    ],
+    },
+    {
+    "id": "bulevar-5",
+    "category": "Apartamentos",
+    "modes": ["sale", "rent"],
+    "name": "Apartamentos en Boulevard 5",
+    "description": "Apartamento en Barrio el Centro, Fray, Alta Verapaz.",
+    "measures": "",
+    "location": "Boulevard 5 es un proyecto de vivienda vertical ubicado en la Zona 5 de la Ciudad de Guatemala, a solo una cuadra de 4 Grados Norte y cerca de la Avenida Reforma. Este edificio cuenta con 19 niveles, 5 sótanos exclusivos para residentes y parqueo para visitas, así como 17 amenidades que aseguran una calidad de vida moderna y urbana",
+    "department": "Guatemala",
+    "services": ["Agua", "Luz"],
+    "paymentOptions": ["Al Contado", "Financiamiento"],
+    "price": "Desde Q7,500 al mes",
+    "availableCount": 20,
+    "availableUnit": "habitaciones",
+    "extras": ["Amplio parqueo"],
+    "images": [
+      "Bulevar1.png",
+      "Bulevar2.jpg",
+      "Bulevar3.jpg",
+  },
     "imageAlts": [
       "Fachada exterior del apartamento",
       "Baño del apartamento",
