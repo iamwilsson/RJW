@@ -180,6 +180,27 @@ window.RJW_INITIAL_PROPERTIES = [
       'WhatsApp%20Image%202026-11-06%20at%2010.10.29%20PM%20%281%29.jpeg',
       'WhatsApp%20Image%202026-11-06%20at%2010.10.29%20PM%20%282%29.jpeg',
       'WhatsApp%20Image%202026-11-06%20at%2010.10.29%20PM%20%283%29.jpeg'
+    },
+    {
+    id: 'bulevar-5',
+    category: 'Apartamentos',
+    modes: ['sale', 'rent'],
+    name: 'Apartamentos en Boulevard 5',
+    description: 'Boulevard 5 es un proyecto de vivienda vertical ubicado en la Zona 5 de la Ciudad de Guatemala, a solo una cuadra de 4 Grados Norte y cerca de la Avenida Reforma. Este edificio cuenta con 19 niveles, 5 sótanos exclusivos para residentes y parqueo para visitas, así como 17 amenidades que aseguran una calidad de vida moderna y urbana',
+    measures: 'Desde 48M2',
+    location: 'Zona 5, Ciudad de Guatemala',
+    department: 'Guatemala',
+    services: ['Agua', 'Luz'],
+    deedType: 'Registrada',
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Escritura Registrada',
+    price: 'Desde Q.7,500 Al Mes',
+    images: [
+      'Bulevar1.png',
+      'Bulevar2.jpg',
+      'Bulevar3.jpg',
+  },
+      
     ],
     imageAlts: [
       'Fachada exterior del apartamento',
