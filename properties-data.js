@@ -373,5 +373,105 @@ window.RJW_INITIAL_PROPERTIES = [
       'Habitaciones y baños de la vivienda',
       'Área de lavandería y patio'
     ]
+  },
+  {
+    id: 'mazda-6-grand-touring',
+    category: 'Vehiculos',
+    modes: ['sale'],
+    name: 'MAZDA 6 GRAND TOURING',
+    description: 'Mazda 6 Grand Touring modelo 2014, transmisión automática, motor 2.5 de 4 cilindros, elegante tapicería de cuero, vidrios eléctricos, radio Bluetooth de pantalla y aire acondicionado.',
+    measures: 'Motor 2.5',
+    location: 'Zona 18, Ciudad de Guatemala',
+    department: 'Guatemala',
+    services: ['Vidrios eléctricos', 'Radio Bluetooth de pantalla', 'Aire acondicionado'],
+    paymentOptions: ['Al Contado'],
+    documentStatus: 'Papelería en Orden',
+    price: 'Q.42,000',
+    extras: ['Modelo 2014', 'Automático', '4 cilindros', 'Tapicería de cuero'],
+    images: [
+      'Carro1.jpg',
+      'Carro12.jpg',
+      'Carro13.jpg'
+    ],
+    imageAlts: [
+      'Vista exterior del Mazda 6 Grand Touring',
+      'Vista lateral o posterior del vehículo',
+      'Interior y tablero del Mazda 6'
+    ]
+  },
+  {
+    id: 'jetta-volkswagen-2013',
+    category: 'Vehiculos',
+    modes: ['sale'],
+    name: 'Jetta Volkswagen 2013',
+    description: 'Jetta Volkswagen 2013 automático con 96,000 millas. Se acepta vehículo de menor valor o cambio dando ribete. Puede traer a su mecánico.',
+    measures: '96,000 millas',
+    location: 'Zona 15, Ciudad de Guatemala',
+    department: 'Guatemala',
+    services: ['Aire acondicionado', 'Transmisión automática'],
+    paymentOptions: ['Al Contado', 'Acepta Intercambio / Ribete'],
+    documentStatus: 'Papelería en Orden',
+    price: 'A negociar / Consultar',
+    extras: ['96,000 millas', 'Transmisión automática', 'Acepta vehículo de menor valor o cambio'],
+    images: [
+      'Carro21.jpg',
+      'Carro22.jpg',
+      'Carro23.jpg'
+    ],
+    imageAlts: [
+      'Vista exterior del Jetta Volkswagen 2013',
+      'Vista lateral del vehículo',
+      'Interior del Jetta Volkswagen'
+    ]
+  },
+  {
+    id: 'hyundai-elantra-gt',
+    category: 'Vehiculos',
+    modes: ['sale'],
+    name: 'HYUNDAI ELANTRA GT MOTOR 1.6 MECÁNICO',
+    description: 'Hyundai Elantra GT modelo 2018 mecánico, motor 1.6 turbo, techo panorámico, aire frío y bolsas intactas.',
+    measures: 'Motor 1.6 Turbo',
+    location: 'Zona 25, Ciudad de Guatemala',
+    department: 'Guatemala',
+    services: ['Aire frío', 'Techo panorámico'],
+    paymentOptions: ['Al Contado'],
+    documentStatus: 'Papelería en Orden',
+    price: 'Q.50,000',
+    extras: ['Modelo 2018', 'Mecánico', 'Motor 1.6 Turbo', 'Techo Panorámico', 'Bolsas Intactas'],
+    images: [
+      'Carro31.jpg',
+      'Carro32.jpg',
+      'Carro33.jpg'
+    ],
+    imageAlts: [
+      'Vista exterior del Hyundai Elantra GT',
+      'Techo panorámico y detalles externos',
+      'Interior del Hyundai Elantra GT'
+    ]
+  },
+  {
+    id: 'chevrolet-corvette-c7-2016',
+    category: 'Vehiculos',
+    modes: ['sale'],
+    name: 'Chevrolet Corvette C7 2016',
+    description: 'Chevrolet Corvette C7 2016 con tracción trasera RWD, selector de modo de manejo (Tour / Sport / Track), interior en excelente estado sin desgaste, asientos deportivos eléctricos y frenos de alto desempeño.',
+    measures: 'Alto desempeño deportivo',
+    location: 'Zona 16, Ciudad de Guatemala',
+    department: 'Guatemala',
+    services: ['Aire acondicionado', 'Sistema de sonido premium con Bluetooth y USB', 'Pantalla central multimedia', 'Frenos deportivos de alto desempeño', 'Asientos deportivos eléctricos'],
+    paymentOptions: ['Al Contado'],
+    documentStatus: 'Papelería al día – listo para traspaso',
+    price: 'USD 65,700',
+    extras: ['Tracción trasera RWD', 'Drive Mode Selector', 'Aros originales', 'Llantas en muy buen estado'],
+    images: [
+      'Carrazo1.jpg',
+      'Carrazo2.jpg',
+      'Carrazo3.jpg'
+    ],
+    imageAlts: [
+      'Vista frontal y exterior del Chevrolet Corvette C7 2016',
+      'Vista lateral y aros originales',
+      'Interior y asientos deportivos del Corvette C7'
+    ]
   }
 ];
