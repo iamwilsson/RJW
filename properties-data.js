@@ -473,5 +473,131 @@ window.RJW_INITIAL_PROPERTIES = [
       'Vista lateral y aros originales',
       'Interior y asientos deportivos del Corvette C7'
     ]
+  },
+  {
+    id: 'maquinaria-185-dpq',
+    category: 'Maquinaria',
+    modes: ['sale', 'rent'],
+    name: '185 DPQ',
+    description: 'El caballo de batalla de nuestra selecta escuadra móvil, el Sullair 185, está totalmente optimizado y listo para trabajar.',
+    measures: 'Equipo móvil / Compresor',
+    location: 'Xelajú',
+    department: 'Quetzaltenango',
+    services: ['Compresión de aire', 'Equipo móvil optimizado'],
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Lista para operar',
+    price: 'Cotizable',
+    extras: ['Marca CAT / Sullair', 'Escuadra móvil'],
+    images: [
+      'Maquina1.png'
+    ],
+    imageAlts: [
+      'Vista del equipo Sullair 185 DPQ'
+    ]
+  },
+  {
+    id: 'maquinaria-2-5tt',
+    category: 'Maquinaria',
+    modes: ['sale', 'rent'],
+    name: '2.5TT',
+    description: 'Autohormigonera autocargable 4×4, con tambor de 3.400 litros, pala frontal de 400 litros, equipada con apertura de mando hidráulico para la descarga en la tolva, velocidad de trabajo de 0 a 9 km/h y velocidad de transferencia de 0 a 25 km/h, con servocontrol eléctrico.',
+    measures: 'Tambor 3,400 L / Pala 400 L',
+    location: 'Ciudad de Guatemala',
+    department: 'Guatemala',
+    services: ['Tracción 4x4', 'Autocargable', 'Servocontrol eléctrico', 'Mando hidráulico'],
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Lista para operar',
+    price: 'Cotizable',
+    extras: ['Marca CARMIX', 'Velocidad de trabajo 0-9 km/h'],
+    images: [
+      'Maquina2.png'
+    ],
+    imageAlts: [
+      'Autohormigonera Carmix 2.5TT'
+    ]
+  },
+  {
+    id: 'maquinaria-3-5tt',
+    category: 'Maquinaria',
+    modes: ['sale', 'rent'],
+    name: '3.5TT',
+    description: 'Planta móvil de hormigón 4×4, con tambor de 4.850 litros, pala de carga de 600 litros, equipada con apertura de mando hidráulico para la descarga en el tambor y una velocidad de trabajo de 0 a 9 km/h y de transferencia de 0 a 25 km/h, con servocontrol eléctrico.',
+    measures: 'Tambor 4,850 L / Pala 600 L',
+    location: 'Mazatenango',
+    department: 'Suchitepéquez',
+    services: ['Tracción 4x4', 'Planta móvil', 'Servocontrol eléctrico', 'Mando hidráulico'],
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Lista para operar',
+    price: 'Cotizable',
+    extras: ['Marca CARMIX', 'Planta móvil de hormigón'],
+    images: [
+      'Maquina3.png'
+    ],
+    imageAlts: [
+      'Planta móvil Carmix 3.5TT'
+    ]
+  },
+  {
+    id: 'maquinaria-45fx',
+    category: 'Maquinaria',
+    modes: ['sale', 'rent'],
+    name: '45FX',
+    description: 'Planta móvil de hormigón para operar en cualquier sitio.',
+    measures: 'Planta móvil compacta',
+    location: 'Xelajú',
+    department: 'Quetzaltenango',
+    services: ['Planta móvil', 'Producción de hormigón en sitio'],
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Lista para operar',
+    price: 'Cotizable',
+    extras: ['Marca CARMIX'],
+    images: [
+      'Maquina4.png'
+    ],
+    imageAlts: [
+      'Planta móvil Carmix 45FX'
+    ]
+  },
+  {
+    id: 'maquinaria-gr-20',
+    category: 'Maquinaria',
+    modes: ['sale', 'rent'],
+    name: 'GR-20',
+    description: 'Los brazos verticales autopropulsados Genie® Runabout®, Runabout™Contractor and QuickStock™ son ideales para tareas de almacenamiento, logística y mantenimiento general.',
+    measures: 'Brazo vertical autopropulsado',
+    location: 'Sacatepéquez',
+    department: 'Sacatepéquez',
+    services: ['Elevación vertical', 'Almacenamiento y logística', 'Mantenimiento general'],
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Lista para operar',
+    price: 'Cotizable',
+    extras: ['Marca GENIE', 'Runabout'],
+    images: [
+      'Maquina5.png'
+    ],
+    imageAlts: [
+      'Brazo vertical Genie GR-20'
+    ]
+  },
+  {
+    id: 'maquinaria-gs-4069-rt',
+    category: 'Maquinaria',
+    modes: ['sale', 'rent'],
+    name: 'GS-4069 RT',
+    description: 'La Genie® GS™-4069 RT es la única unidad de 14,12 m con desplazamiento a altura total de su clase capaz de atravesar los terrenos más exigentes e irregulares. Construida para ser duradera y resistente, ideal para entornos al aire libre.',
+    measures: 'Altura de 14.12 metros',
+    location: 'Ciudad de Guatemala',
+    department: 'Guatemala',
+    services: ['Tracción Todo Terreno (RT)', 'Desplazamiento a altura total', 'Elevación de tijera'],
+    paymentOptions: ['Al Contado', 'Financiamiento'],
+    documentStatus: 'Lista para operar',
+    price: 'Cotizable',
+    extras: ['Marca GENIE', 'Terrenos irregulares'],
+    images: [
+      'Maquina6.png'
+    ],
+    imageAlts: [
+      'Plataforma de tijera Genie GS-4069 RT'
+    ]
   }
 ];
